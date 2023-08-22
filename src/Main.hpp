@@ -11,7 +11,7 @@
 // OS includes
 #if defined(WIN32)
 	#include <windows.h>
-	#include <snprintf/snprintf.h>
+	#include "snprintf/snprintf.h"
 
 	#pragma warning(disable : 4201 4206 4127 4100 4305 4127)
 	#define STDCALL __stdcall
@@ -22,7 +22,7 @@
 	#include <pthread.h>
 	#include <unistd.h>
 	#include <sys/mman.h>
-	#include <fopen_s/fopen_s.h>
+	#include "fopen_s/fopen_s.h"
 
 	#define BOOL    int32_t
 	#define DWORD   uint32_t
@@ -50,12 +50,12 @@
 #include <sstream>
 #include <btBulletDynamicsCommon.h>
 // Library includes
-#include <sdk/plugin.h>
-#include <raknet/BitStream.h>
+#include "sdk/plugin.h"
+#include "raknet/BitStream.h"
 #include "vendor/MapAndreas/MapAndreas.h"
 #include "vendor/ColAndreas/DynamicWorld.h"
-#include <subhook/subhook.h>
-#include <strlcpy/strlcpy.h>
+#include "subhook.h"
+#include "strlcpy/strlcpy.h"
 // ExceptionHandler includes
 #include "CExceptionHandler.hpp"
 // Utils includes
