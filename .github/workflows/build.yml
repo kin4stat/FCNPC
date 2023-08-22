@@ -38,20 +38,22 @@ jobs:
       id: strings
       shell: bash
       run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        echo "build-dir=${{ github.workspace }}/out/build/${{ matrix.os }}" >> "$GITHUB_OUTPUT"
 
     - name: Configure CMake
       run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
+        cmake --preset=${{ matrix.os }}
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
         
     - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      run: cmake --build ${{ steps.strings.outputs.build-dir }} --config ${{ matrix.build_type }} --parallel 2
 
     - name: "Upload artifacts"
       uses: actions/upload-artifact@v3
       with:
-        path:
+        path: |
+          ${{ steps.strings.outputs.build-dir }}/FCPNC.*
+          ${{ github.workspace }}/src/sampsvr_files/FCPNC.inc
