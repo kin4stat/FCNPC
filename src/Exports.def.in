@@ -1,4 +1,4 @@
-LIBRARY	"FCNPC-DL"
+LIBRARY	"${TARGET_NAME}"
 EXPORTS
 	Supports
 	Load
@@ -6,4 +6,3 @@ EXPORTS
 	AmxLoad
 	AmxUnload
 	ProcessTick
-
